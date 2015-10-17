@@ -3,19 +3,19 @@
 GPP = g++
 CFLAGS = -Wall -Werror -pedantic -std=c++11 -c
 
-all: CharVisitor.o IOBoard.o Plugboard.o Reflector.o RotateVisitor.o Rotor.o Main.o
+all: enigma
 
-enigma: all
-	$(GPP) $(CFLAGS) $^ -o $@
+enigma: CharVisitor.o IOBoard.o Plugboard.o Reflector.o RotateVisitor.o Rotor.o Main.o
+	$(GPP) $^ -o $@
 
 Main.o: Main.cpp
-	$(GPP) $(CFLAGS) $^ -o $@
+	$(GPP) $(CFLAGS) $< -o $@
 
 CharVisitor.o: Visitor.cpp CharVisitor.cpp
 	$(GPP) $(CFLAGS) $^ -o $@
 
 IOBoard.o: IOBoard.cpp
-	$(GPP) $(CFLAGS) $^ -o $@
+	$(GPP) $(CFLAGS) $< -o $@
 
 Plugboard.o: AbstractMapper.cpp ConfigurableMapper.cpp Plugboard.cpp
 	$(GPP) $(CFLAGS) $^ -o $@
@@ -32,4 +32,4 @@ Rotor.o: AbstractMapper.cpp ConfigurableMapper.cpp Plugboard.cpp
 clean:
 	rm -rf enigma *.o
 
-.PHONY: clean
+.PHONY: clean all
