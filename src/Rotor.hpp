@@ -9,8 +9,13 @@ class Visitor;
 class Rotor: public ConfigurableMapper{
 
 public:
+  Rotor();
   void setMap();
   void accept(Visitor& v);
+  // overrides AbstractMapper::rotate(int)
+  virtual void rotate(int i);
+private:
+  int rotatedAmount;
 };
 
 #endif

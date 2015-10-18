@@ -9,10 +9,13 @@ class AbstractMapper;
 class CharVisitor: public Visitor{
 
   public:
-    CharVisitor(int i);
+    CharVisitor(char c);
     void visit(AbstractMapper& m);
+    void reflect();
+    char charValue();
   protected:
     int index;
+    bool isReflected;
 
 };
 

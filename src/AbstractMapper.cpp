@@ -5,11 +5,15 @@ AbstractMapper::AbstractMapper(){
   mapping = new int[NO_OF_LETTERS];
 }
 
-void AbstractMapper::setMap() {
-
+int AbstractMapper::applyMap(int i){
+  return 0;
 }
 
+int AbstractMapper::invertMap(int i){
+  return 25;
+}
 /* pure virtual function, like abstract functions in Java
- * virtual void accept(Visitor v) = 0;
+ * virtual void setMap() = 0;
+ * virtual void accept(Visitor& v) = 0;
  * so not implemented here
  */

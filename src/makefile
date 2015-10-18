@@ -1,10 +1,11 @@
 
 GPP = g++
 CFLAGS = -Wall -Werror -pedantic
+ABSTRACTOBJECTS = AbstractMapper.o ConfigurableMapper.o
 
 all: enigma
 
-enigma: CharVisitor.o IOBoard.o Plugboard.o Reflector.o RotateVisitor.o Rotor.o Main.o
+enigma: CharVisitor.o IOBoard.o Plugboard.o Reflector.o Rotor.o Main.o $(ABSTRACTOBJECTS)
 	$(GPP) $^ -o $@
 
 Main.o: Main.cpp
@@ -22,13 +23,17 @@ Plugboard.o: Plugboard.cpp Plugboard.hpp ConfigurableMapper.hpp AbstractMapper.h
 Reflector.o: Reflector.cpp Reflector.hpp AbstractMapper.hpp Visitor.hpp
 	$(GPP) $(CFLAGS) -c $<
 
-RotateVisitor.o: RotateVisitor.cpp RotateVisitor.hpp Visitor.hpp AbstractMapper.hpp
-	$(GPP) $(CFLAGS) -c $<
-
 Rotor.o: Rotor.cpp Rotor.hpp ConfigurableMapper.hpp AbstractMapper.hpp Visitor.hpp
 	$(GPP) $(CFLAGS) -c $<
 
+# Abstract objects
+AbstractMapper.o: AbstractMapper.cpp AbstractMapper.hpp
+	$(GPP) $(CFLAGS) -c $<
+
+ConfigurableMapper.o: ConfigurableMapper.cpp ConfigurableMapper.hpp AbstractMapper.hpp
+	$(GPP) $(CFLAGS) -c $<
+
 clean:
-	rm -rf enigma *.o
+	rm -rf enigma enigma.exe *.o
 
 .PHONY: clean all
