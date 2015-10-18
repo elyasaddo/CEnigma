@@ -1,7 +1,6 @@
-# edit this makefile so that running make compiles your enigma program
 
 GPP = g++
-CFLAGS = -Wall -Werror -pedantic -std=c++11 -c
+CFLAGS = -Wall -Werror -pedantic
 
 all: enigma
 
@@ -9,25 +8,25 @@ enigma: CharVisitor.o IOBoard.o Plugboard.o Reflector.o RotateVisitor.o Rotor.o 
 	$(GPP) $^ -o $@
 
 Main.o: Main.cpp
-	$(GPP) $(CFLAGS) $< -o $@
+	$(GPP) $(CFLAGS) -c $<
 
-CharVisitor.o: Visitor.cpp CharVisitor.cpp
-	$(GPP) $(CFLAGS) $^ -o $@
+CharVisitor.o: CharVisitor.cpp CharVisitor.hpp Visitor.hpp AbstractMapper.hpp
+	$(GPP) $(CFLAGS) -c $<
 
-IOBoard.o: IOBoard.cpp
-	$(GPP) $(CFLAGS) $< -o $@
+IOBoard.o: IOBoard.cpp IOBoard.hpp
+	$(GPP) $(CFLAGS) -c $<
 
-Plugboard.o: AbstractMapper.cpp ConfigurableMapper.cpp Plugboard.cpp
-	$(GPP) $(CFLAGS) $^ -o $@
+Plugboard.o: Plugboard.cpp Plugboard.hpp ConfigurableMapper.hpp AbstractMapper.hpp Visitor.hpp
+	$(GPP) $(CFLAGS) -c $<
 
-Reflector.o: AbstractMapper.cpp ConfigurableMapper.cpp Plugboard.cpp
-	$(GPP) $(CFLAGS) $^ -o $@
+Reflector.o: Reflector.cpp Reflector.hpp AbstractMapper.hpp Visitor.hpp
+	$(GPP) $(CFLAGS) -c $<
 
-RotateVisitor.o: Visitor.o RotateVisitor.o
-	$(GPP) $(CFLAGS) $^ -o $@
+RotateVisitor.o: RotateVisitor.cpp RotateVisitor.hpp Visitor.hpp AbstractMapper.hpp
+	$(GPP) $(CFLAGS) -c $<
 
-Rotor.o: AbstractMapper.cpp ConfigurableMapper.cpp Plugboard.cpp
-	$(GPP) $(CFLAGS) $^ -o $@
+Rotor.o: Rotor.cpp Rotor.hpp ConfigurableMapper.hpp AbstractMapper.hpp Visitor.hpp
+	$(GPP) $(CFLAGS) -c $<
 
 clean:
 	rm -rf enigma *.o

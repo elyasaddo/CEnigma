@@ -1,8 +1,5 @@
-class Plugboard: public ConfigurableMapper{
+#include "Plugboard.hpp"
 
-public:
-  void setMap() {
+void Plugboard::setMap() {
 
-  }
-  
 }

@@ -1,8 +1,5 @@
-class RotateVisitor: public Visitor{
+#include "RotateVisitor.hpp"
 
-    public:
-      void visit(AbstractMapper m){
-
-      }
+void RotateVisitor::visit(AbstractMapper& m){
 
 }

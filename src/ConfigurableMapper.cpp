@@ -1,10 +1,11 @@
 #include <fstream>
+#include "ConfigurableMapper.hpp"
 
-class ConfigurableMapper: public Mapper{
-
-  public:
-    void setMapFromFile(File f){
-
-    }
+void ConfigurableMapper::setMapFromFile(File& f){
 
 }
+
+/* pure virtual function, like abstract functions in Java
+ * virtual void accept(Visitor& v) = 0;
+ * so not implemented here
+ */

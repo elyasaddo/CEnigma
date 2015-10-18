@@ -1,10 +1,9 @@
-class Rotor: public ConfigurableMapper{
+#include "Rotor.hpp"
 
-public:
-  void setMap(){
+void Rotor::setMap(){
 
-  }
-  void accept(Visitor v){
+}
+
+void Rotor::accept(Visitor& v){
     
-  }
 }

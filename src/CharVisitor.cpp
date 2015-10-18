@@ -1,8 +1,9 @@
-class CharVisitor: public Visitor{
+#include "CharVisitor.hpp"
 
-  public:
-    void visit(AbstractMapper m){
+CharVisitor::CharVisitor(int i){
+  index = i;
+}
 
-    }
+void CharVisitor::visit(AbstractMapper& m){
 
 }

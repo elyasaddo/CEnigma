@@ -1,10 +1,9 @@
-class Reflector: public AbstractMapper{
+#include "Reflector.hpp"
 
-  public:
-    void setMap(){
+void Reflector::setMap(){
 
-    }
-    void accept(Visitor v){
-      
-    }
+}
+
+void Reflector::accept(Visitor& v){
+
 }

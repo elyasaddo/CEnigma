@@ -1,17 +1,15 @@
 #include "EnigmaConsts.hpp"
+#include "AbstractMapper.hpp"
 
-class AbstractMapper{
+AbstractMapper::AbstractMapper(){
+  mapping = new int[NO_OF_LETTERS];
+}
 
-  public:
-    AbstractMapper(){
-      mapping = new int[NO_OF_LETTERS]
-    }
-    void setMap() {
-      /* code */
-    }
-    // pure virtual function, like abstract functio in Java
-    virtual void accept(Visitor v) = 0;
-  protected:
-    int* mapping;
+void AbstractMapper::setMap() {
 
-};
+}
+
+/* pure virtual function, like abstract functions in Java
+ * virtual void accept(Visitor v) = 0;
+ * so not implemented here
+ */
