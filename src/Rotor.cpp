@@ -1,4 +1,4 @@
-#include "Rotor.hpp"
+ #include "Rotor.hpp"
 
 Rotor::Rotor(){
   rotatedAmount = 0;
@@ -6,6 +6,14 @@ Rotor::Rotor(){
 
 void Rotor::setMap(){
 
+}
+
+int adjustOffset(int i){
+  return 0;
+}
+
+int readjustOffset(int i){
+  return 0;
 }
 
 void Rotor::accept(Visitor& v){

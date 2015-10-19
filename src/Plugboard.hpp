@@ -7,6 +7,8 @@ class Plugboard: public ConfigurableMapper{
 
 public:
   void setMap();
+  int adjustOffset(int i);
+  int readjustOffset(int i);
   void accept(Visitor& v);
 
 };
