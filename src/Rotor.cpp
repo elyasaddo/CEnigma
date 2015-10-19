@@ -1,25 +1,20 @@
  #include "Rotor.hpp"
+ #include "EnigmaConsts.hpp"
 
 Rotor::Rotor(){
-  rotatedAmount = 0;
 }
 
 void Rotor::setMap(){
 
 }
 
-int adjustOffset(int i){
-  return 0;
-}
-
-int readjustOffset(int i){
-  return 0;
-}
-
 void Rotor::accept(Visitor& v){
 
 }
 
-void Rotor::rotate(int i){
-
+bool Rotor::rotate(int i){
+  offset++;
+  bool fullyRotated = (offset == NO_OF_LETTERS);
+  offset %= NO_OF_LETTERS;
+  return fullyRotated;
 }

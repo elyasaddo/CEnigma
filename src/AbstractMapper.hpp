@@ -12,11 +12,13 @@ class AbstractMapper{
     virtual void setMap() = 0;
     int applyMap(int i);
     int invertMap(int i);
-    virtual int adjustOffset(int i) = 0;
-    virtual int readjustOffset(int i) = 0;
+    // int adjustOffset(int i);
+    // int readjustOffset(int i);
     virtual void accept(Visitor& v) = 0;
   protected:
     int* mapping;
+    int* inverseMapping;
+    int offset;
 
 };
 

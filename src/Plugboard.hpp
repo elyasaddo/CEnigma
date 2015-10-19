@@ -7,8 +7,9 @@ class Plugboard: public ConfigurableMapper{
 
 public:
   void setMap();
-  int adjustOffset(int i);
-  int readjustOffset(int i);
+  // virtual functions can be overridden
+  // virtual int adjustOffset(int i);
+  // virtual int readjustOffset(int i);
   void accept(Visitor& v);
 
 };
