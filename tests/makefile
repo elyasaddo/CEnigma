@@ -3,14 +3,20 @@ GPP = g++
 CFLAGS = -Wall -Werror -pedantic -std=c++11
 ABSTRACTOBJECTS = ../src/AbstractMapper.o ../src/ConfigurableMapper.o
 
-all: testCharVisitor
+all: testCharVisitor testConfiguraleMapper
 
 testCharVisitor: testCharVisitor.o ../src/CharVisitor.o ../src/Reflector.o $(ABSTRACTOBJECTS)
+	$(GPP) $^ -o $@
+
+testConfiguraleMapper: testConfiguraleMapper.o ../src/CharVisitor.o ../src/Plugboard.o ../src/Rotor.o $(ABSTRACTOBJECTS)
 	$(GPP) $^ -o $@
 
 testCharVisitor.o: testCharVisitor.cpp ../src/CharVisitor.hpp ../src/AbstractMapper.hpp
 	$(GPP) $(CFLAGS) -c $<
 
+testConfiguraleMapper.o: testConfiguraleMapper.cpp ../src/CharVisitor.hpp ../src/AbstractMapper.hpp ../src/ConfigurableMapper.hpp ../src/Plugboard.hpp ../src/Rotor.hpp
+	$(GPP) $(CFLAGS) -c $<
+	
 # Abstract objects
 # AbstractMapper.o: AbstractMapper.cpp AbstractMapper.hpp
 #	$(GPP) $(CFLAGS) -c $<

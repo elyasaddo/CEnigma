@@ -2,17 +2,16 @@
 #define CONFIGURABLEMAPPER_H
 
 #include <fstream>
-class File;
+#include <string>
 
 #include "AbstractMapper.hpp"
 
 class ConfigurableMapper: public AbstractMapper{
 
   public:
-    void setMapFromFile(File& f);
+    void setMap();
+    void setMapFromFile(std::ifstream &f, std::string extn);
     // pure virtual function, like abstract functions in Java
-    // virtual int adjustOffset(int i) = 0;
-    // virtual int readjustOffset(int i) = 0;
     virtual void accept(Visitor& v) = 0;
 
 };
