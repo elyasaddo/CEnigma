@@ -2,6 +2,7 @@
 #include "AbstractMapper.hpp"
 
 AbstractMapper::AbstractMapper(){
+  offset = 0;
   mapping = new int[NO_OF_LETTERS];
   inverseMapping = new int[NO_OF_LETTERS];
 }

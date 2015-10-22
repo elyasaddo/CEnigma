@@ -13,17 +13,16 @@ void ConfigurableMapper::setMap(){
 }
 
 void ConfigurableMapper::setMapFromFile(std::ifstream &f, std::string extn){
-  if (extn.compare("pb")){
+  if (extn.compare("pb") == 0){
     ConfigurableMapper::setMap();
     int x, y;
     while (!f.eof()) {
       f >> x >> y;
       mapping[x] = y;
       mapping[y] = x;
-      inverseMapping[x] = y;
-      inverseMapping[y] = x;
+      inverseMapping = mapping;
     }
-  } else if (extn.compare("rot")){
+  } else if (extn.compare("rot") == 0){
     int x;
     for (int i = 0; i < NO_OF_LETTERS; i++) {
       f >> x;
@@ -31,6 +30,11 @@ void ConfigurableMapper::setMapFromFile(std::ifstream &f, std::string extn){
       inverseMapping[x] = i;
     }
   }
+  
+  // std::cout << std::endl;
+  // for (int i = 0; i < NO_OF_LETTERS; i++) {
+  //   std::cout << mapping[i] << ' ';
+  // }
   // Possible exception thrown
 }
 

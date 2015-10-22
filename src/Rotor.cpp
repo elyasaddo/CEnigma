@@ -1,15 +1,17 @@
- #include "Rotor.hpp"
- #include "EnigmaConsts.hpp"
+#include <iostream>
+#include <fstream>
+#include "Rotor.hpp"
+#include "EnigmaConsts.hpp"
 
-Rotor::Rotor(){
-}
-
-void Rotor::setMap(){
-
+Rotor::Rotor(std::string file){
+  std::ifstream rotorConf;
+  rotorConf.open(file, std::ios::in);
+  setMapFromFile(rotorConf, "rot");
+  rotorConf.close();
 }
 
 void Rotor::accept(Visitor& v){
-
+  v.visit(*this);
 }
 
 bool Rotor::rotate(int i){

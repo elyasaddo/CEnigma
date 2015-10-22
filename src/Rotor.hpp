@@ -9,8 +9,7 @@ class Visitor;
 class Rotor: public ConfigurableMapper{
 
 public:
-  Rotor();
-  void setMap();
+  Rotor(std::string file);
   void accept(Visitor& v);
   // overrides AbstractMapper::rotate(int)
   bool rotate(int i);

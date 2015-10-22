@@ -2,7 +2,7 @@
 
 CharVisitor::CharVisitor(char c){
   //PRE: c is in [A-Z]
-  index = ((unsigned char) (c - 'A')) + 1;
+  index = (unsigned char) (c - 'A');
   isReflected = false;
 }
 
@@ -19,5 +19,5 @@ void CharVisitor::reflect(){
 }
 
 char CharVisitor::charValue(){
-  return ((char) (index - 1)) + 'A';
+  return  index + 'A';
 }

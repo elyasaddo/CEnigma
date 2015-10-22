@@ -1,15 +1,14 @@
 #ifndef PLUGBOARD_H
 #define PLUGBOARD_H
 
+#include <iostream>
+#include <fstream>
 #include "ConfigurableMapper.hpp"
 
 class Plugboard: public ConfigurableMapper{
 
 public:
-  void setMap();
-  // virtual functions can be overridden
-  // virtual int adjustOffset(int i);
-  // virtual int readjustOffset(int i);
+  Plugboard(std::string file);
   void accept(Visitor& v);
 
 };

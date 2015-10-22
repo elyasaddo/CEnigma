@@ -1,6 +1,6 @@
 
 GPP = g++
-CFLAGS = -Wall -Werror -pedantic
+CFLAGS = -Wall -Werror -pedantic -std=c++11
 ABSTRACTOBJECTS = AbstractMapper.o ConfigurableMapper.o
 
 all: enigma
