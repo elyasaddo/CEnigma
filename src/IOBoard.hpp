@@ -3,7 +3,10 @@
 
 #include <istream>
 #include <vector>
+#include <memory>
 #include "Rotor.hpp"
+#include "Plugboard.hpp"
+#include "Reflector.hpp"
 
 class IOBoard{
 
@@ -11,11 +14,13 @@ class IOBoard{
     IOBoard(int noOfParams, char** filenames, std::istream input);
     void run();
   private:
-    void encryptLetter(char c);
+    char encryptLetter(char c);
     void rotate();
     // properties
-    vector<Rotor> rotors;
-
+    std::istream inputStream;
+    std::vector<Rotor> rotors;
+    std::shared_ptr<Plugboard> plugboard;
+    std::shared_ptr<Reflector> reflector;
 }
 
 #endif
