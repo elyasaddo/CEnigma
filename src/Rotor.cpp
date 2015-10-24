@@ -15,7 +15,7 @@ void Rotor::accept(Visitor& v){
 }
 
 bool Rotor::rotate(int i){
-  offset++;
+  offset+= i;
   bool fullyRotated = (offset == NO_OF_LETTERS);
   offset %= NO_OF_LETTERS;
   return fullyRotated;

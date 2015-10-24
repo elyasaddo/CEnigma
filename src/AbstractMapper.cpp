@@ -1,3 +1,4 @@
+#include <iostream>
 #include "EnigmaConsts.hpp"
 #include "AbstractMapper.hpp"
 
@@ -10,14 +11,16 @@ AbstractMapper::AbstractMapper(){
 // PRE 0 <= i < NO_OF_LETTERS
 int AbstractMapper::applyMap(int i){
   i += offset;
-  i = mapping[i];
+  std::cout << '|' << i % NO_OF_LETTERS << ' ';
+  i = mapping[i % NO_OF_LETTERS];
   i -= offset;
   return i;
 }
 
 int AbstractMapper::invertMap(int i){
   i += offset;
-  i = inverseMapping[i];
+  std::cout << i % NO_OF_LETTERS << ' ';
+  i = inverseMapping[i % NO_OF_LETTERS];
   i -= offset;
   return i;
 }

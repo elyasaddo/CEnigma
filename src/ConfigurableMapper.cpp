@@ -20,7 +20,9 @@ void ConfigurableMapper::setMapFromFile(std::ifstream &f, std::string extn){
       f >> x >> y;
       mapping[x] = y;
       mapping[y] = x;
-      inverseMapping = mapping;
+      // cannot use inverseMapping.reset(mapping) since both arrays are unique_ptrs
+      inverseMapping[x] = y;
+      inverseMapping[y] = x;
     }
   } else if (extn.compare("rot") == 0){
     int x;

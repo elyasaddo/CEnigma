@@ -14,7 +14,7 @@ Main.o: Main.cpp
 CharVisitor.o: CharVisitor.cpp CharVisitor.hpp Visitor.hpp AbstractMapper.hpp
 	$(GPP) $(CFLAGS) -c $<
 
-IOBoard.o: IOBoard.cpp IOBoard.hpp
+IOBoard.o: IOBoard.cpp IOBoard.hpp EnigmaConsts.hpp
 	$(GPP) $(CFLAGS) -c $<
 
 Plugboard.o: Plugboard.cpp Plugboard.hpp ConfigurableMapper.hpp AbstractMapper.hpp Visitor.hpp
@@ -27,10 +27,10 @@ Rotor.o: Rotor.cpp Rotor.hpp ConfigurableMapper.hpp AbstractMapper.hpp Visitor.h
 	$(GPP) $(CFLAGS) -c $<
 
 # Abstract objects
-AbstractMapper.o: AbstractMapper.cpp AbstractMapper.hpp
+AbstractMapper.o: AbstractMapper.cpp AbstractMapper.hpp EnigmaConsts.hpp
 	$(GPP) $(CFLAGS) -c $<
 
-ConfigurableMapper.o: ConfigurableMapper.cpp ConfigurableMapper.hpp AbstractMapper.hpp
+ConfigurableMapper.o: ConfigurableMapper.cpp ConfigurableMapper.hpp AbstractMapper.hpp EnigmaConsts.hpp
 	$(GPP) $(CFLAGS) -c $<
 
 clean:

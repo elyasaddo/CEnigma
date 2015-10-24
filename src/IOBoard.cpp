@@ -21,6 +21,10 @@ IOBoard::IOBoard(int noOfParams, const char** filenames, std::istream& input){
   reflector = std::make_shared<Reflector> ();
 }
 
+IOBoard::~IOBoard(){
+  rotors.clear();
+}
+
 void IOBoard::run(){
   char c;
   while(inputStream->get(c)){
