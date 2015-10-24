@@ -3,13 +3,8 @@
 
 AbstractMapper::AbstractMapper(){
   offset = 0;
-  mapping = new int[NO_OF_LETTERS];
-  inverseMapping = new int[NO_OF_LETTERS];
-}
-
-AbstractMapper::~AbstractMapper(){
-  delete[] mapping;
-  delete[] inverseMapping;
+  mapping.reset(new int[NO_OF_LETTERS]);
+  inverseMapping.reset(new int[NO_OF_LETTERS]);
 }
 
 // PRE 0 <= i < NO_OF_LETTERS
