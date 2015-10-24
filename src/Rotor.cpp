@@ -3,11 +3,8 @@
 #include "Rotor.hpp"
 #include "EnigmaConsts.hpp"
 
-Rotor::Rotor(std::string file){
-  std::ifstream rotorConf;
-  rotorConf.open(file, std::ios::in);
+Rotor::Rotor(std::ifstream &file){
   setMapFromFile(rotorConf, "rot");
-  rotorConf.close();
 }
 
 void Rotor::accept(Visitor& v){

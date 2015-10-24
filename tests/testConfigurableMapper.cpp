@@ -15,15 +15,17 @@ void testRotors(Rotor &r);
 
 int main(int argc, char const *argv[]) {
 
-  shared_ptr<Rotor> rotor(new Rotor("../rotors/I.rot"));
-  shared_ptr<Plugboard> pboard(new Plugboard("../plugboards/I.pb"));
+  shared_ptr<Rotor> rotor;
+  shared_ptr<Plugboard> pboard);
 
-  //ifstream rotorConf;
-  //rotorConf.open("../rotors/I.rot", ios::in); // conf: 1 2 3 4 5 6 7 8 9 10 11 ... 0
-  //rotor->setMapFromFile(rotorConf , "rot");
-  //ifstream pboardConf;
-  //pboardConf.open("../plugboards/I.pb", ios::in); //conf: 25 8
-  //pboard->setMapFromFile(pboardConf, "pb");
+  ifstream rotorConf;
+  rotorConf.open("../rotors/I.rot", ios::in); // conf: 1 2 3 4 5 6 7 8 9 10 11 ... 0
+  rotor.reset(rotorConf);
+  rotorConf.close();
+  ifstream pboardConf;
+  pboardConf.open("../plugboards/I.pb", ios::in); //conf: 25 8
+  pboard.reset(pboardConf);
+  pboardConf.close();
 
   testPlugboards(*pboard);
   cout << endl;

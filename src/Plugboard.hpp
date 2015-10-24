@@ -8,7 +8,7 @@
 class Plugboard: public ConfigurableMapper{
 
 public:
-  Plugboard(std::string file);
+  Plugboard(std::ifstream &file);
   void accept(Visitor& v);
 
 };

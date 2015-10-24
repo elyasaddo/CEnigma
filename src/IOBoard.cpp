@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include <iostream>
 #include <fstream>
 #include <cctype>
@@ -10,13 +11,16 @@ IOBoard::IOBoard(int noOfParams, const char** filenames, std::istream& input){
   inputStream = &input;
   // set up rotors
   // 0 indexed, all but last are rotors
-  //Rotor* r;
+  std::ifstream rotorConf;
   for (int i = 0; i <= noOfParams - 2; i++) {
-    //r = (new Rotor(filenames[i]));
-    rotors.push_back(std::make_shared<Rotor> (filenames[i]));
+    rotorConf.open(filenames[i], std::ios::in);
+    rotors.push_back(std::make_shared<Rotor> (rotorConf);
   }
   // set up plugboard
-  plugboard = std::make_shared<Plugboard> (filenames[noOfParams-1]);
+  std::ifstream pboardConf;
+  pboardConf.open(filenames[noOfParams-1], std::ios::in);
+  plugboard = std::make_shared<Plugboard> (pboardConf);
+  pboardConf.close();
   // set up reflector
   reflector = std::make_shared<Reflector> ();
 }
@@ -55,9 +59,8 @@ char IOBoard::encryptLetter(char c){
     return cv->charValue();
 
   } else if (!isspace(c)){
-    std::cerr << std::endl <<  '\'' << c << "' is not a valid character.";
-    std::cerr << std::endl << "Only uppercase letters and spaces allowed.";
-    std::cerr << std::endl;
+    throw std::invalid_argument("''" + c + "' is not a valid character.\n" +
+            "Only uppercase letters and spaces allowed.\n");
   }
 
   return c; // returns c if it is a white space

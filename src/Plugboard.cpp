@@ -2,11 +2,8 @@
 #include <fstream>
 #include "Plugboard.hpp"
 
-Plugboard::Plugboard(std::string file){
-  std::ifstream pboardConf;
-  pboardConf.open(file, std::ios::in);
-  setMapFromFile(pboardConf, "pb");
-  pboardConf.close();
+Plugboard::Plugboard(std::ifstream &file){
+  setMapFromFile(file, "pb");
 }
 
 void Plugboard::accept(Visitor& v){
