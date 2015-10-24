@@ -15,8 +15,12 @@ void Rotor::accept(Visitor& v){
 }
 
 bool Rotor::rotate(int i){
-  offset+= i;
-  bool fullyRotated = (offset == NO_OF_LETTERS);
+  offset += i;
+  while (offset < 0){
+    offset += NO_OF_LETTERS;
+  }
+  // will only count 1st full rotation
+  bool fullyRotated = (offset >= NO_OF_LETTERS);
   offset %= NO_OF_LETTERS;
   return fullyRotated;
 }

@@ -18,6 +18,7 @@ class AbstractMapper{
     // int readjustOffset(int i);
     virtual void accept(Visitor& v) = 0;
   protected:
+    int readjustIndexAfterMap(int i);
     std::unique_ptr<int[]> mapping;
     std::unique_ptr<int[]> inverseMapping;
     int offset;
