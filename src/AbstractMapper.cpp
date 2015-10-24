@@ -11,14 +11,12 @@ AbstractMapper::AbstractMapper(){
 // PRE 0 <= i < NO_OF_LETTERS
 int AbstractMapper::applyMap(int i){
   i += offset;
-  std::cout << '|' << i % NO_OF_LETTERS << ' ';
   i = mapping[i % NO_OF_LETTERS];
   return readjustIndexAfterMap(i);
 }
 
 int AbstractMapper::invertMap(int i){
   i += offset;
-  std::cout << i % NO_OF_LETTERS << ' ';
   i = inverseMapping[i % NO_OF_LETTERS];
   return readjustIndexAfterMap(i);
 }
@@ -27,6 +25,7 @@ int AbstractMapper::readjustIndexAfterMap(int i){
   i -= offset;
   i += NO_OF_LETTERS;
   i %= NO_OF_LETTERS;
+ return i;
 }
 
 /* pure virtual function, like abstract functions in Java
