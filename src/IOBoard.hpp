@@ -18,7 +18,7 @@ class IOBoard{
     void rotate();
     // properties
     std::istream* inputStream;
-    std::vector<Rotor*> rotors;
+    std::vector<std::shared_ptr<Rotor>> rotors;
     std::shared_ptr<Plugboard> plugboard;
     std::shared_ptr<Reflector> reflector;
 };

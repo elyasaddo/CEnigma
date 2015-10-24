@@ -13,7 +13,7 @@ IOBoard::IOBoard(int noOfParams, const char** filenames, std::istream& input){
   //Rotor* r;
   for (int i = 0; i <= noOfParams - 2; i++) {
     //r = (new Rotor(filenames[i]));
-    rotors.push_back(new Rotor(filenames[i]));
+    rotors.push_back(std::make_shared<Rotor> (filenames[i]));
   }
   // set up plugboard
   plugboard = std::make_shared<Plugboard> (filenames[noOfParams-1]);
@@ -24,7 +24,7 @@ IOBoard::IOBoard(int noOfParams, const char** filenames, std::istream& input){
 void IOBoard::run(){
   char c;
   while(inputStream->get(c)){
-    std::cout << encryptLetter(c); 
+    std::cout << encryptLetter(c);
   }
 }
 
@@ -32,15 +32,15 @@ char IOBoard::encryptLetter(char c){
 
   if (isupper(c)){
     std::shared_ptr<CharVisitor> cv(new CharVisitor(c));
-    
+
     plugboard->accept(*cv);
-    for (std::vector<Rotor*>::iterator rItr = rotors.begin(); 
+    for (std::vector<Rotor*>::iterator rItr = rotors.begin();
             rItr != rotors.end(); rItr++){
       (*rItr)->accept(*cv);
     }
     reflector->accept(*cv);
     cv->reflect();
-    for (std::vector<Rotor*>::reverse_iterator rItr = rotors.rbegin(); 
+    for (std::vector<Rotor*>::reverse_iterator rItr = rotors.rbegin();
             rItr != rotors.rend(); rItr++){ // note the Rbegin and Rend
       (*rItr)->accept(*cv);
     }
