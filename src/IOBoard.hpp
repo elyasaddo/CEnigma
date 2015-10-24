@@ -17,8 +17,8 @@ class IOBoard{
     char encryptLetter(char c);
     void rotate();
     // properties
-    std::istream& inputStream;
-    std::vector<Rotor> rotors;
+    std::istream* inputStream;
+    std::vector<Rotor*> rotors;
     std::shared_ptr<Plugboard> plugboard;
     std::shared_ptr<Reflector> reflector;
 };
