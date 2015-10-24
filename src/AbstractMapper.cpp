@@ -7,6 +7,11 @@ AbstractMapper::AbstractMapper(){
   inverseMapping = new int[NO_OF_LETTERS];
 }
 
+AbstractMapper::~AbstractMapper(){
+  delete[] mapping;
+  delete[] inverseMapping;
+}
+
 // PRE 0 <= i < NO_OF_LETTERS
 int AbstractMapper::applyMap(int i){
   i += offset;

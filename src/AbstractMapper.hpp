@@ -8,6 +8,7 @@ class AbstractMapper{
 
   public:
     AbstractMapper();
+    ~AbstractMapper();
     // pure virtual functions, like abstract in Java
     virtual void setMap() = 0;
     int applyMap(int i);
