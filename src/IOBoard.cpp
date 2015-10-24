@@ -2,16 +2,17 @@
 #include <fstream>
 #include "IOBoard.hpp"
 
-IOBoard::IOBoard(int noOfParams, char** filenames, std::istream input){
+IOBoard::IOBoard(int noOfParams, char** filenames, std::istream& input){
   inputStream = input;
   // set up rotors
   // 0 indexed, all but last are rotors
+  Rotor* r;
   for (int i = 0; i < noOfParams - 2; i++) {
-    Rotor* r = new Rotor(filenames[i]);
-    rotors.push_back();
+    r = (new Rotor(filenames[i]));
+    rotors.push_back(&(*r));
   }
   // set up plugboard
-  plugboard = make_shared<Plugboard> (filenames[noOfParams-1]);
+  plugboard = std::make_shared<Plugboard> (filenames[noOfParams-1]);
   // set up reflector
   reflector = make_shared<Reflector> ();
 }
