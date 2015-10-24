@@ -1,6 +1,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
+#include <string>
 #include <cctype>
 #include <memory>
 #include <iterator>
@@ -14,7 +15,7 @@ IOBoard::IOBoard(int noOfParams, const char** filenames, std::istream& input){
   std::ifstream rotorConf;
   for (int i = 0; i <= noOfParams - 2; i++) {
     rotorConf.open(filenames[i], std::ios::in);
-    rotors.push_back(std::make_shared<Rotor> (rotorConf);
+    rotors.push_back(std::make_shared<Rotor> (rotorConf));
   }
   // set up plugboard
   std::ifstream pboardConf;
@@ -59,8 +60,10 @@ char IOBoard::encryptLetter(char c){
     return cv->charValue();
 
   } else if (!isspace(c)){
-    throw std::invalid_argument("''" + c + "' is not a valid character.\n" +
-            "Only uppercase letters and spaces allowed.\n");
+    std::string message = "'" + c;
+    message += "' is not a valid character.\n";
+    message += "Only uppercase letters and spaces allowed.\n";
+    throw std::invalid_argument(message);
   }
 
   return c; // returns c if it is a white space

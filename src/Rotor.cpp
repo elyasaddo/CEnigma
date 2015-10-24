@@ -4,7 +4,7 @@
 #include "EnigmaConsts.hpp"
 
 Rotor::Rotor(std::ifstream &file){
-  setMapFromFile(rotorConf, "rot");
+  setMapFromFile(file, "rot");
 }
 
 void Rotor::accept(Visitor& v){

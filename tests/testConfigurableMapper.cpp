@@ -16,15 +16,15 @@ void testRotors(Rotor &r);
 int main(int argc, char const *argv[]) {
 
   shared_ptr<Rotor> rotor;
-  shared_ptr<Plugboard> pboard);
+  shared_ptr<Plugboard> pboard;
 
   ifstream rotorConf;
-  rotorConf.open("../rotors/I.rot", ios::in); // conf: 1 2 3 4 5 6 7 8 9 10 11 ... 0
-  rotor.reset(rotorConf);
+  rotorConf.open("../rotors/I.rot", ios::in); // conf: 1 2 3 4 5 6 7 8 9 10 11 ... 24 25 0
+  rotor.reset(new Rotor(rotorConf));
   rotorConf.close();
   ifstream pboardConf;
   pboardConf.open("../plugboards/I.pb", ios::in); //conf: 25 8
-  pboard.reset(pboardConf);
+  pboard.reset(new Plugboard(pboardConf));
   pboardConf.close();
 
   testPlugboards(*pboard);
