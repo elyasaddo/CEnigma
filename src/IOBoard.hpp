@@ -21,6 +21,6 @@ class IOBoard{
     std::vector<Rotor> rotors;
     std::shared_ptr<Plugboard> plugboard;
     std::shared_ptr<Reflector> reflector;
-}
+};
 
 #endif

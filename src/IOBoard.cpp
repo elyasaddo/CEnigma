@@ -17,13 +17,11 @@ IOBoard::IOBoard(int noOfParams, char** filenames, std::istream input){
 }
 
 void IOBoard::run(){
-  std::string text;
-  inputStream >> text;
-  for (str:string::iterator itr = text.begin(); itr != text.end(); ++itr) {
-    text[i] = encryptLetter(text[0]);
+  char c;
+  while(inputStream.get(c)){
+    std::cout << encryptLetter(c) << std::endl;
     rotate();
   }
-  std::cout << text << std::endl;
 }
 
 char encryptLetter(char c){
