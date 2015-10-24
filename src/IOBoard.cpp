@@ -34,13 +34,14 @@ char IOBoard::encryptLetter(char c){
     std::shared_ptr<CharVisitor> cv(new CharVisitor(c));
 
     plugboard->accept(*cv);
-    for (std::vector<Rotor*>::iterator rItr = rotors.begin();
+    for (std::vector<std::shared_ptr<Rotor>>::iterator rItr = rotors.begin();
             rItr != rotors.end(); rItr++){
       (*rItr)->accept(*cv);
     }
     reflector->accept(*cv);
     cv->reflect();
-    for (std::vector<Rotor*>::reverse_iterator rItr = rotors.rbegin();
+    for (std::vector<std::shared_ptr<Rotor>>::reverse_iterator rItr
+            = rotors.rbegin();
             rItr != rotors.rend(); rItr++){ // note the Rbegin and Rend
       (*rItr)->accept(*cv);
     }
@@ -59,7 +60,7 @@ char IOBoard::encryptLetter(char c){
 }
 
 void IOBoard::rotate(){
-  std::vector<Rotor*>::iterator rItr = rotors.begin();
+  std::vector<std::shared_ptr<Rotor>>::iterator rItr = rotors.begin();
   while(rItr != rotors.end()){
     if ( !(*rItr)->rotate(1)){
       // if this rotor is not fully rotated, don't rotate the next

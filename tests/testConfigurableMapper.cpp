@@ -40,18 +40,18 @@ void testPlugboards(Plugboard &p){
   p.accept(*c);
   cout << "Actual: " << c->charValue() << endl;
 
-  c = make_shared<CharVisitor> ('R');
+  c.reset(new CharVisitor('R'));
   c->reflect();
   cout << "Entering 'R' : expecting 'R'" << endl;
   p.accept(*c);
   cout << "Actual: " << c->charValue() << endl;
 
-  c = make_shared<CharVisitor> ('H');
+  c.reset(new CharVisitor('H'));
   cout << "Entering 'H' : expecting 'H'" << endl;
   p.accept(*c);
   cout << "Actual: " << c->charValue() << endl;
 
-  c = make_shared<CharVisitor> ('Z');
+  c.reset(new CharVisitor('Z'));
   cout << "Entering 'Z' : expecting 'I'" << endl;
   p.accept(*c);
   cout << "Actual: " << c->charValue() << endl;
@@ -68,13 +68,13 @@ void testRotors(Rotor &r){
   r.accept(*c);
   cout << "Actual: " << c->charValue() << endl;
 
-  c = make_shared<CharVisitor> ('R');
+  c.reset(new CharVisitor('R'));
   c->reflect();
   cout << "Entering 'R' : expecting 'Q'" << endl;
   r.accept(*c);
   cout << "Actual: " << c->charValue() << endl;
 
-  c = make_shared<CharVisitor> ('H');
+  c.reset(new CharVisitor('H'));
   cout << "Entering 'H' : expecting 'I'" << endl;
   r.accept(*c);
   cout << "Actual: " << c->charValue() << endl;

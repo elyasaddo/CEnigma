@@ -14,7 +14,7 @@ int main(int argc, char const *argv[]) {
   r->accept(*c);
   cout << "Actual: " << c->charValue() << endl;
 
-  c = make_shared<CharVisitor> ('R');
+  c.reset(new CharVisitor('R'));
   cout << "Entering 'R' : expecting 'E'" << endl;
   r->accept(*c);
   cout << "Actual: " << c->charValue() << endl;
