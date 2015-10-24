@@ -1,6 +1,10 @@
 #include <iostream>
 #include <fstream>
+#include <cctype>
+#include <memory>
+#include <iterator>
 #include "IOBoard.hpp"
+#include "CharVisitor.hpp"
 
 IOBoard::IOBoard(int noOfParams, const char** filenames, std::istream& input){
   inputStream = &input;
@@ -21,12 +25,37 @@ void IOBoard::run(){
   char c;
   while(inputStream->get(c)){
     std::cout << encryptLetter(c); 
-    rotate();
   }
 }
 
 char IOBoard::encryptLetter(char c){
-  return c;
+
+  if (isupper(c)){
+    std::shared_ptr<CharVisitor> cv(new CharVisitor(c));
+    
+    plugboard->accept(*cv);
+    for (std::vector<Rotor*>::iterator rItr = rotors.begin(); 
+            rItr != rotors.end(); rItr++){
+      (*rItr)->accept(*cv);
+    }
+    reflector->accept(*cv);
+    cv->reflect();
+    for (std::vector<Rotor*>::reverse_iterator rItr = rotors.rbegin(); 
+            rItr != rotors.rend(); rItr++){ // note the Rbegin and Rend
+      (*rItr)->accept(*cv);
+    }
+    plugboard->accept(*cv);
+
+    rotate();
+    return cv->charValue();
+
+  } else if (!isspace(c)){
+    std::cerr << std::endl <<  '\'' << c << "' is not a valid character.";
+    std::cerr << std::endl << "Only uppercase letters and spaces allowed.";
+    std::cerr << std::endl;
+  }
+
+  return c; // returns c if it is a white space
 }
 
 void IOBoard::rotate(){
