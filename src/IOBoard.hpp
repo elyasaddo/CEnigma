@@ -11,7 +11,7 @@
 class IOBoard{
 
   public:
-    IOBoard(int noOfParams, char** filenames, std::istream& input);
+    IOBoard(int noOfParams, const char** filenames, std::istream& input);
     void run();
   private:
     char encryptLetter(char c);

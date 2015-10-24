@@ -2,7 +2,7 @@
 #include <fstream>
 #include "IOBoard.hpp"
 
-IOBoard::IOBoard(int noOfParams, char** filenames, std::istream& input){
+IOBoard::IOBoard(int noOfParams, const char** filenames, std::istream& input){
   inputStream = &input;
   // set up rotors
   // 0 indexed, all but last are rotors
@@ -20,7 +20,7 @@ IOBoard::IOBoard(int noOfParams, char** filenames, std::istream& input){
 void IOBoard::run(){
   char c;
   while(inputStream->get(c)){
-    std::cout << encryptLetter(c) << std::endl;
+    std::cout << encryptLetter(c); 
     rotate();
   }
 }
