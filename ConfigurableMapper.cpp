@@ -16,7 +16,7 @@ void ConfigurableMapper::setMapFromFile(std::ifstream &f, std::string extn){
   if (extn.compare("pb") == 0){
     ConfigurableMapper::setMap();
     int x, y;
-    while (!f.eof()) {
+    while (f.peek() != std::ifstream::traits_type::eof()) {
       f >> x >> y;
       mapping[x] = y;
       mapping[y] = x;

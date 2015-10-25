@@ -15,11 +15,16 @@ IOBoard::IOBoard(int noOfParams, const char** filenames, std::istream& input){
   std::ifstream rotorConf;
   for (int i = 0; i <= noOfParams - 2; i++) {
     rotorConf.open(filenames[i], std::ios::in);
+    if (!rotorConf.is_open()) 
+      throw std::invalid_argument("File does not exist");
     rotors.push_back(std::make_shared<Rotor> (rotorConf));
+    rotorConf.close();
   }
   // set up plugboard
   std::ifstream pboardConf;
   pboardConf.open(filenames[noOfParams-1], std::ios::in);
+  if (!pboardConf.is_open()) 
+    throw std::invalid_argument("File does not exist");
   plugboard = std::make_shared<Plugboard> (pboardConf);
   pboardConf.close();
   // set up reflector
