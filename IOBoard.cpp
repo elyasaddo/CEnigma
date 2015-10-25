@@ -77,9 +77,9 @@ char IOBoard::encryptLetter(char c){
 void IOBoard::rotate(){
   std::vector<std::shared_ptr<Rotor>>::iterator rItr = rotors.begin();
   while(rItr != rotors.end()){
-    if ( !(*rItr)->rotate(1)){
+    if ( !(*rItr)->rotate(1))
       // if this rotor is not fully rotated, don't rotate the next
       break;
-    }
+  rItr++;
   }
 }
