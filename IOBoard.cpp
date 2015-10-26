@@ -8,8 +8,7 @@
 #include "IOBoard.hpp"
 #include "CharVisitor.hpp"
 
-IOBoard::IOBoard(int noOfParams, const char** filenames, std::istream& input){
-  inputStream = &input;
+IOBoard::IOBoard(int noOfParams, const char** filenames){
   // set up rotors
   // 0 indexed, all but last are rotors
   std::ifstream rotorConf;
@@ -37,7 +36,7 @@ IOBoard::~IOBoard(){
 
 void IOBoard::run(){
   char c;
-  while(inputStream->get(c)){
+  while(std::cin >> std::ws >> c){
     std::cout << encryptLetter(c);
   }
 }
@@ -64,8 +63,9 @@ char IOBoard::encryptLetter(char c){
     rotate();
     return cv->charValue();
 
-  } else if (!isspace(c)){
-    std::string message = "'" + c;
+  } else {
+    std::string message = "'";
+    message += c;
     message += "' is not a valid character.\n";
     message += "Only uppercase letters and spaces allowed.\n";
     throw std::invalid_argument(message);

@@ -12,7 +12,7 @@ int main(int argc, char **argv)
      throw invalid_argument("Need at least a plugboard (.pb) file");
    }
    shared_ptr<IOBoard> ioBoard(
-           new IOBoard(argc - 1, (const char**) &(argv[1]), cin));
+           new IOBoard(argc - 1, (const char**) &(argv[1])));
    ioBoard->run();
 
   return 0;

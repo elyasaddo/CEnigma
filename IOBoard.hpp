@@ -11,14 +11,13 @@
 class IOBoard{
 
   public:
-    IOBoard(int noOfParams, const char** filenames, std::istream& input);
+    IOBoard(int noOfParams, const char** filenames);
     ~IOBoard();
     void run();
   private:
     char encryptLetter(char c);
     void rotate();
     // properties
-    std::istream* inputStream;
     std::vector<std::shared_ptr<Rotor>> rotors;
     std::shared_ptr<Plugboard> plugboard;
     std::shared_ptr<Reflector> reflector;
