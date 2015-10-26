@@ -1,39 +1,44 @@
 
 GPP = g++
 CFLAGS = -Wall -Werror -pedantic -std=c++11
-ABSTRACTOBJECTS = AbstractMapper.o ConfigurableMapper.o
+OBJECTS = bin/CharVisitor.o bin/IOBoard.o bin/Plugboard.o bin/Reflector.o bin/Rotor.o bin/Main.o
+ABSTRACTOBJECTS = bin/AbstractMapper.o bin/ConfigurableMapper.o
 
-all: enigma
+all: mkdirBin enigma
 
-enigma: CharVisitor.o IOBoard.o Plugboard.o Reflector.o Rotor.o Main.o $(ABSTRACTOBJECTS)
+mkdirBin:
+	mkdir -p bin
+
+enigma: $(OBJECTS) $(ABSTRACTOBJECTS)
 	$(GPP) $^ -o $@
 
-Main.o: Main.cpp
-	$(GPP) $(CFLAGS) -c $<
+bin/Main.o: src/Main.cpp
+	$(GPP) $(CFLAGS) -c $< -o $@
 
-CharVisitor.o: CharVisitor.cpp CharVisitor.hpp Visitor.hpp AbstractMapper.hpp
-	$(GPP) $(CFLAGS) -c $<
+bin/CharVisitor.o: src/CharVisitor.cpp src/CharVisitor.hpp src/Visitor.hpp src/AbstractMapper.hpp
+	$(GPP) $(CFLAGS) -c $< -o $@
 
-IOBoard.o: IOBoard.cpp IOBoard.hpp EnigmaConsts.hpp
-	$(GPP) $(CFLAGS) -c $<
+bin/IOBoard.o: src/IOBoard.cpp src/IOBoard.hpp src/EnigmaConsts.hpp
+	$(GPP) $(CFLAGS) -c $< -o $@
 
-Plugboard.o: Plugboard.cpp Plugboard.hpp ConfigurableMapper.hpp AbstractMapper.hpp Visitor.hpp
-	$(GPP) $(CFLAGS) -c $<
+bin/Plugboard.o: src/Plugboard.cpp src/Plugboard.hpp src/ConfigurableMapper.hpp src/AbstractMapper.hpp src/Visitor.hpp
+	$(GPP) $(CFLAGS) -c $< -o $@
 
-Reflector.o: Reflector.cpp Reflector.hpp AbstractMapper.hpp Visitor.hpp
-	$(GPP) $(CFLAGS) -c $<
+bin/Reflector.o: src/Reflector.cpp src/Reflector.hpp src/AbstractMapper.hpp src/Visitor.hpp
+	$(GPP) $(CFLAGS) -c $< -o $@
 
-Rotor.o: Rotor.cpp Rotor.hpp ConfigurableMapper.hpp AbstractMapper.hpp Visitor.hpp
-	$(GPP) $(CFLAGS) -c $<
+bin/Rotor.o: src/Rotor.cpp src/Rotor.hpp src/ConfigurableMapper.hpp src/AbstractMapper.hpp src/Visitor.hpp
+	$(GPP) $(CFLAGS) -c $< -o $@
 
 # Abstract objects
-AbstractMapper.o: AbstractMapper.cpp AbstractMapper.hpp EnigmaConsts.hpp
-	$(GPP) $(CFLAGS) -c $<
+bin/AbstractMapper.o: src/AbstractMapper.cpp src/AbstractMapper.hpp src/EnigmaConsts.hpp
+	$(GPP) $(CFLAGS) -c $< -o $@
 
-ConfigurableMapper.o: ConfigurableMapper.cpp ConfigurableMapper.hpp AbstractMapper.hpp EnigmaConsts.hpp
-	$(GPP) $(CFLAGS) -c $<
+bin/ConfigurableMapper.o: src/ConfigurableMapper.cpp src/ConfigurableMapper.hpp src/AbstractMapper.hpp src/EnigmaConsts.hpp
+	$(GPP) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf enigma enigma.exe *.o
+	rm -rf enigma enigma.exe bin/*.o 
 
-.PHONY: clean all
+.PHONY: clean all mkdirBin
+
